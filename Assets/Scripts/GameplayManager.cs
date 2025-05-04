@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -117,16 +118,44 @@ public class GameplayManager : MonoBehaviour
         hasGameFinished = true;
         GameEnd?.Invoke();
         GameManager.Instance.CurrentScore = score;
+        SoundManager.Instance.StopAllSounds();
         SoundManager.Instance.PlaySound(loseClip);
 
         StartCoroutine(GameOver());
     }
 
+
     private IEnumerator GameOver()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         GameManager.Instance.GoToMainMenu();
     }
 
+    #endregion
+
+    #region UI
+
+    public GameObject pausePanel;
+    public GameObject pButton;
+
+    public void PauseGame()
+    {
+        pausePanel.SetActive(true);
+        pButton.SetActive(false);
+        Time.timeScale = 0f;
+    } 
+
+    public void ResumeGame()
+    {
+        pausePanel.SetActive(false);
+        pButton.SetActive(true);
+        Time.timeScale = 1f;
+    }
+
+    public void MainMenu()
+    {
+        SoundManager.Instance.StopAllSounds();
+        SceneManager.LoadScene("MainMenu");
+    }
     #endregion
 }

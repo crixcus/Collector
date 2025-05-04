@@ -8,10 +8,9 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
             return;
         }
         else
@@ -26,5 +25,9 @@ public class SoundManager : MonoBehaviour
     public void PlaySound(AudioClip clip)
     {
         effectSource.PlayOneShot(clip);
+    }
+    public void StopAllSounds()
+    {
+        effectSource.Stop();
     }
 }

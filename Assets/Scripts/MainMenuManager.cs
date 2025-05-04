@@ -70,4 +70,10 @@ public class MainMenuManager : MonoBehaviour
         SoundManager.Instance.PlaySound(clickClip);
         GameManager.Instance.GoToGameplay();
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Nag Quit");
+    }
 }
