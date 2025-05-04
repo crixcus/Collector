@@ -21,10 +21,10 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    [SerializeField] private AudioSource _effectSource;
+    [SerializeField] private AudioSource effectSource;
 
     public void PlaySound(AudioClip clip)
     {
-        _effectSource.PlayOneShot(clip);
+        effectSource.PlayOneShot(clip);
     }
 }

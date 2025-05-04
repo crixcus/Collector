@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float moveSpeed;
 
     private Vector2 moveDirection;
 
@@ -23,31 +23,45 @@ public class Player : MonoBehaviour
         GameplayManager.Instance.GameEnd -= GameEnded;
     }
 
-    [SerializeField] private GameObject _clickParticle, _scoreParticle, _playerParticle;
-    [SerializeField] private AudioClip _moveClip, _scoreSoundClip;
+    [SerializeField] private GameObject clickParticle, scoreParticle, playerParticle;
+    [SerializeField] private AudioClip moveClip, _scoreSoundClip;
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        Vector3? inputPosition = null;
+
+#if UNITY_EDITOR || UNITY_STANDALONE
+        if (Input.GetMouseButtonDown(0))
         {
-            SoundManager.Instance.PlaySound(_moveClip);
+            inputPosition = Input.mousePosition;
+        }
+#elif UNITY_ANDROID || UNITY_IOS
+    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+    {
+        inputPosition = Input.GetTouch(0).position;
+    }
+#endif
 
-            Vector3 mousPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousPos2D = new Vector2(mousPos.x, mousPos.y);
+        if (inputPosition.HasValue)
+        {
+            SoundManager.Instance.PlaySound(moveClip);
 
-            moveDirection = (mousPos2D - (Vector2)transform.position).normalized;
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(inputPosition.Value);
+            Vector2 worldPos2D = new Vector2(worldPos.x, worldPos.y);
 
-            Destroy(Instantiate(_clickParticle, new Vector3(mousPos.x, mousPos.y, 0f), Quaternion.identity),1f);
+            moveDirection = (worldPos2D - (Vector2)transform.position).normalized;
+
+            Destroy(Instantiate(clickParticle, new Vector3(worldPos.x, worldPos.y, 0f), Quaternion.identity), 1f);
         }
 
         float cosAngle = Mathf.Acos(moveDirection.x) * Mathf.Rad2Deg;
-
         transform.rotation = Quaternion.Euler(0, 0, cosAngle * (moveDirection.y < 0f ? -1f : 1f));
     }
 
+
     private void FixedUpdate()
     {
-        transform.position += (Vector3)(_moveSpeed * Time.fixedDeltaTime * moveDirection);
+        transform.position += (Vector3)(moveSpeed * Time.fixedDeltaTime * moveDirection);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -66,7 +80,7 @@ public class Player : MonoBehaviour
         {
 
             SoundManager.Instance.PlaySound(_scoreSoundClip);
-            Destroy(Instantiate(_scoreParticle, collision.gameObject.transform.position, Quaternion.identity), 1f);
+            Destroy(Instantiate(scoreParticle, collision.gameObject.transform.position, Quaternion.identity), 1f);
             GameplayManager.Instance.UpdateScore();
             StartCoroutine(ScoreDestroy(collision.gameObject));
         }
@@ -110,7 +124,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator ScaleDown()
     {
-        Destroy(Instantiate(_playerParticle, transform.position, Quaternion.identity), 1f);
+        Destroy(Instantiate(playerParticle, transform.position, Quaternion.identity), 1f);
 
         float timeElapsed = 0f;
         float speed = 1 / _animationTime;

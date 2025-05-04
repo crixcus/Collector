@@ -17,7 +17,7 @@ public class GameplayManager : MonoBehaviour
         hasGameFinished = false;
 
         score = 0;
-        _scoreText.text = score.ToString();
+        scoreText.text = score.ToString();
 
         scoreToSpawn = 1;
         totalTime = 10f;
@@ -32,13 +32,13 @@ public class GameplayManager : MonoBehaviour
 
     #region SCORE
 
-    [SerializeField] private TMP_Text _scoreText;
+    [SerializeField] private TMP_Text scoreText;
     private int score;
     private int scoreToSpawn;
     private int remainingScore;
 
-    [SerializeField] private GameObject _scorePrefab;
-    [SerializeField] private float _spawnX, _spawnY;
+    [SerializeField] private GameObject scorePrefab;
+    [SerializeField] private float spawnX, spawnY;
 
     private void SpawnScore()
     {
@@ -46,7 +46,7 @@ public class GameplayManager : MonoBehaviour
 
         for (int i = 0; i < remainingScore; i++)
         {
-            Vector3 spawnPos = new Vector3(Random.Range(-_spawnX, _spawnX), Random.Range(-_spawnY, _spawnY), 0);
+            Vector3 spawnPos = new Vector3(Random.Range(-spawnX, spawnX), Random.Range(-spawnY, spawnY), 0);
 
             RaycastHit2D hit = Physics2D.CircleCast(spawnPos, 1f, Vector2.zero);
 
@@ -54,18 +54,18 @@ public class GameplayManager : MonoBehaviour
 
             while (canSpawn)
             {
-                spawnPos = new Vector3(Random.Range(-_spawnX, _spawnX), Random.Range(-_spawnY, _spawnY), 0);
+                spawnPos = new Vector3(Random.Range(-spawnX, spawnX), Random.Range(-spawnY, spawnY), 0);
                 hit = Physics2D.CircleCast(spawnPos, 1f, Vector2.zero);
                 canSpawn = hit;
             }
 
-            Instantiate(_scorePrefab, spawnPos, Quaternion.identity);
+            Instantiate(scorePrefab, spawnPos, Quaternion.identity);
         }
     }
     public void UpdateScore()
     {
         score++;
-        _scoreText.text = score.ToString();
+        scoreText.text = score.ToString();
 
         remainingScore--;
 
@@ -81,7 +81,7 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private Transform _timerImage;
+    [SerializeField] private Transform timerImage;
 
     private float totalTime;
     private float currentTime;
@@ -91,9 +91,9 @@ public class GameplayManager : MonoBehaviour
         while(!hasGameFinished)
         {
             currentTime -= Time.deltaTime;
-            Vector3 temp = _timerImage.localScale;
+            Vector3 temp = timerImage.localScale;
             temp.x = currentTime / totalTime;
-            _timerImage.localScale = temp;
+            timerImage.localScale = temp;
 
             if(currentTime <= 0f)
             {
@@ -110,14 +110,14 @@ public class GameplayManager : MonoBehaviour
 
     public UnityAction GameEnd;
 
-    [SerializeField] private AudioClip _loseClip;
+    [SerializeField] private AudioClip loseClip;
 
     private void GameEnded()
     {
         hasGameFinished = true;
         GameEnd?.Invoke();
         GameManager.Instance.CurrentScore = score;
-        SoundManager.Instance.PlaySound(_loseClip);
+        SoundManager.Instance.PlaySound(loseClip);
 
         StartCoroutine(GameOver());
     }

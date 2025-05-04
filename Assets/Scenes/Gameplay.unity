@@ -582,12 +582,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71806604bd1743a458689fc79a7c94b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreText: {fileID: 1932535950}
-  _scorePrefab: {fileID: 8835260721936773637, guid: f4e4ddc754146da47ba5212bf54de468, type: 3}
-  _spawnX: 9.2
-  _spawnY: 20
-  _timerImage: {fileID: 552591448}
-  _loseClip: {fileID: 8300000, guid: 227c57a948c929b46be8e7b034a24d3a, type: 3}
+  scoreText: {fileID: 1932535950}
+  scorePrefab: {fileID: 8835260721936773637, guid: f4e4ddc754146da47ba5212bf54de468, type: 3}
+  spawnX: 9.2
+  spawnY: 20
+  timerImage: {fileID: 552591448}
+  loseClip: {fileID: 8300000, guid: 398c222394e0946438d6e2549cd60a31, type: 3}
 --- !u!4 &866285062
 Transform:
   m_ObjectHideFlags: 0
@@ -737,11 +737,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba9452b0caccd84b901ea46f0eac981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 8
-  _clickParticle: {fileID: 7970591977654026760, guid: 335395266c2f0d940a0862e4f5e2f7b7, type: 3}
-  _scoreParticle: {fileID: 7970591977654026760, guid: 0a0e9ea633e70764a82b2386a35174d2, type: 3}
-  _playerParticle: {fileID: 7970591977654026760, guid: 79da01b53a863424e82e68c6859312f5, type: 3}
-  _moveClip: {fileID: 8300000, guid: ca8ccacfffb410d46aad779d0dcb7f63, type: 3}
+  moveSpeed: 8
+  clickParticle: {fileID: 7970591977654026760, guid: 335395266c2f0d940a0862e4f5e2f7b7, type: 3}
+  scoreParticle: {fileID: 7970591977654026760, guid: 0a0e9ea633e70764a82b2386a35174d2, type: 3}
+  playerParticle: {fileID: 7970591977654026760, guid: 79da01b53a863424e82e68c6859312f5, type: 3}
+  moveClip: {fileID: 8300000, guid: ca8ccacfffb410d46aad779d0dcb7f63, type: 3}
   _scoreSoundClip: {fileID: 8300000, guid: 253d8ca0700930d49abfd54b79a089aa, type: 3}
   _scoreDestroyClip: {fileID: 7400000, guid: 4e9b71aeae8b67c489db3203b50a3fb6, type: 2}
   _animationTime: 1
