@@ -397,6 +397,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119576174}
   m_CullTransparentMesh: 1
+--- !u!1 &131778444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131778446}
+  - component: {fileID: 131778445}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &131778445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131778444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92384a0f84f078f4e82bcbe502702a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawnA: {fileID: 4666778123385264116, guid: 5210c8bf166277f478d67e717c0f14e5, type: 3}
+  objectToSpawnB: {fileID: 5877725981541523159, guid: 108ad5b13a3af9644840ef0401402cbd, type: 3}
+  spawnInterval: 4
+  moveRange: 7
+  initialSpeed: 2
+--- !u!4 &131778446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131778444}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 24.33, z: -0.122520134}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &139910222
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +752,7 @@ RectTransform:
   m_GameObject: {fileID: 229780657}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.010242, y: 4.75408, z: 4.75408}
+  m_LocalScale: {x: 0.47448036, y: 2.2328486, z: 2.2328486}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1793344404}
@@ -712,7 +761,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.5955, y: 1004}
+  m_AnchoredPosition: {x: -0.5239798, y: 1004}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &229780659
@@ -784,7 +833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.08627451}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.09803922}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1222,7 +1271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9490197, g: 0.81568635, b: 0.23137257, a: 1}
+  m_Color: {r: 0.9490196, g: 0.8156863, b: 0.23137255, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2334,7 +2383,7 @@ RectTransform:
   m_GameObject: {fileID: 999762856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3915305, y: 1.3412341, z: 1.3915305}
+  m_LocalScale: {x: 1.3915305, y: 1.391531, z: 1.3915305}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1125708676}
@@ -3233,7 +3282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1214748091}
   - component: {fileID: 1214748092}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3498,7 +3547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225.15, y: -247}
+  m_AnchoredPosition: {x: -234, y: -247}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1290159971
@@ -4380,9 +4429,9 @@ GameObject:
   - component: {fileID: 1549069393}
   - component: {fileID: 1549069392}
   - component: {fileID: 1549069391}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4422,61 +4471,16 @@ MonoBehaviour:
   moveClip: {fileID: 8300000, guid: ca8ccacfffb410d46aad779d0dcb7f63, type: 3}
   _scoreSoundClip: {fileID: 8300000, guid: 253d8ca0700930d49abfd54b79a089aa, type: 3}
   _scoreDestroyClip: {fileID: 7400000, guid: 4e9b71aeae8b67c489db3203b50a3fb6, type: 2}
-  _animationTime: 1
-  _scaleUpCurve:
+  animationTime: 0
+  scaleUpCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1.4650036
-      outSlope: 1.4650036
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.7283365
-      value: 1.0670156
-      inSlope: 0.6091587
-      outSlope: 0.6091587
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: -0.24668625
-      outSlope: -0.24668625
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _scaleDownCurve:
+  scaleDownCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -9603,7 +9607,7 @@ RectTransform:
   m_GameObject: {fileID: 1793344403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.4018188, y: 0.92890173, z: 5.4018188}
+  m_LocalScale: {x: 14.091724, y: 2.4232259, z: 14.091724}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 229780658}
@@ -9697,7 +9701,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 67.193184, y: 0, z: 67.1932, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

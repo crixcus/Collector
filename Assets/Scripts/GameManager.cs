@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -23,14 +25,8 @@ public class GameManager : MonoBehaviour
 
     public int HighScore
     {
-        get
-        {
-            return PlayerPrefs.GetInt(highScoreKey, 0);
-        }
-        set
-        {
-            PlayerPrefs.SetInt(highScoreKey, value);
-        }
+        get => PlayerPrefs.GetInt(highScoreKey, 0);
+        set => PlayerPrefs.SetInt(highScoreKey, value);
     }
 
     public int CurrentScore { get; set; }
@@ -47,11 +43,18 @@ public class GameManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(MainMenu);
+        StartCoroutine(LoadSceneWithDelay(MainMenu));
     }
 
     public void GoToGameplay()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(Gameplay);
+        StartCoroutine(LoadSceneWithDelay(Gameplay));
+    }
+
+    public IEnumerator LoadSceneWithDelay(string sceneName)
+    {
+        yield return new WaitForSeconds(0.1f);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(sceneName);
     }
 }

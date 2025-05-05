@@ -74,7 +74,7 @@ public class GameplayManager : MonoBehaviour
         {
             scoreToSpawn++;
 
-            totalTime = scoreToSpawn * 5f;
+            totalTime = scoreToSpawn * 2f;
             currentTime = totalTime;
 
             SpawnScore();
@@ -154,8 +154,16 @@ public class GameplayManager : MonoBehaviour
 
     public void MainMenu()
     {
+        Time.timeScale = 1f;
         SoundManager.Instance.StopAllSounds();
-        SceneManager.LoadScene("MainMenu");
+        StartCoroutine(LoadSceneWithDelay("MainMenu"));
+    }
+
+    public IEnumerator LoadSceneWithDelay(string sceneName)
+    {
+        yield return new WaitForSeconds(0.3f);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(sceneName);
     }
     #endregion
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    private bool canMove = true;
+
 
     private Vector2 moveDirection;
 
@@ -41,7 +43,6 @@ public class Player : MonoBehaviour
         inputPosition = Input.GetTouch(0).position;
     }
 #endif
-
         if (inputPosition.HasValue)
         {
             SoundManager.Instance.PlaySound(moveClip);
@@ -61,7 +62,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position += (Vector3)(moveSpeed * Time.fixedDeltaTime * moveDirection);
+        if (canMove)
+        {
+            transform.position += (Vector3)(moveSpeed * Time.fixedDeltaTime * moveDirection);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -84,7 +88,19 @@ public class Player : MonoBehaviour
             GameplayManager.Instance.UpdateScore();
             StartCoroutine(ScoreDestroy(collision.gameObject));
         }
+        if (collision.CompareTag("Obstacle"))
+        {
+            StartCoroutine(DisableMovementTemporarily(1f));
+        }
     }
+
+    private IEnumerator DisableMovementTemporarily(float duration)
+    {
+        canMove = false;
+        yield return new WaitForSeconds(duration);
+        canMove = true;
+    }
+
 
     [SerializeField] private AnimationClip _scoreDestroyClip;
 
@@ -96,13 +112,13 @@ public class Player : MonoBehaviour
         Destroy(scoreObject);
     }
 
-    [SerializeField] private float _animationTime;
-    [SerializeField] private AnimationCurve _scaleUpCurve, _scaleDownCurve;
+    [SerializeField] private float animationTime;
+    [SerializeField] private AnimationCurve scaleUpCurve, scaleDownCurve;
 
     private IEnumerator ScaleUp()
     {
         float timeElapsed = 0f;
-        float speed = 1 / _animationTime;
+        float speed = 1 / animationTime;
         Vector3 startScale = Vector3.zero;
         Vector3 endScale = Vector3.one;
         Vector3 scaleOffset = endScale - startScale;
@@ -110,7 +126,7 @@ public class Player : MonoBehaviour
         while(timeElapsed < 1f)
         {
             timeElapsed += speed * Time.deltaTime;
-            transform.localScale = startScale + _scaleUpCurve.Evaluate(timeElapsed) * scaleOffset;
+            transform.localScale = startScale + scaleUpCurve.Evaluate(timeElapsed) * scaleOffset;
             yield return null;
         }
 
@@ -127,7 +143,7 @@ public class Player : MonoBehaviour
         Destroy(Instantiate(playerParticle, transform.position, Quaternion.identity), 1f);
 
         float timeElapsed = 0f;
-        float speed = 1 / _animationTime;
+        float speed = 1 / animationTime;
         Vector3 startScale = Vector3.one;
         Vector3 endScale = Vector3.zero;
         Vector3 scaleOffset = endScale - startScale;
@@ -135,7 +151,7 @@ public class Player : MonoBehaviour
         while (timeElapsed < 1f)
         {
             timeElapsed += speed * Time.deltaTime;
-            transform.localScale = startScale + _scaleUpCurve.Evaluate(timeElapsed) * scaleOffset;
+            transform.localScale = startScale + scaleUpCurve.Evaluate(timeElapsed) * scaleOffset;
             yield return null;
         }
 
